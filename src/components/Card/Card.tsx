@@ -1,34 +1,16 @@
-// import { useEffect, useState } from "react"
-import { IUser } from "../../App"
+import { User } from "../../App"
 
-export default function Card({ data }: IUser) {
+interface CardProps {
+    content: User
+}
 
-    // const [data, setData] = useState({
-    //     name: 'Larry',
-    //     photo: 'https://via.placeholder.com/150',
-    //     resume: 'Lorem ipsilum dolor sit amet',
-    //     company: {
-    //         name: 'Facebook',
-    //         role: 'Manager'
-    //     }
-    // });
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const response = await fetch('https://jsonplaceholder.typicode.com/users/1');
-    //         const json = await response.json();
-    //         // setData(json);
-    //     };
-    //     fetchData();
-    // }, []);
-
-
+export default function Card({ content }: CardProps) {
     return (
         <div>
-            <img src={data.photo} alt={data.name} />
-            <p>{data.resume}</p>
-            <h5>{data.name}</h5>
-            <p>{data.company.role} at <br/> {data.company.name}</p>
+            <img src={content.photo} alt={content.name} />
+            <p>{content.resume}</p>
+            <h5>{content.name}</h5>
+            <p>{content.company.role} at <br/> {content.company.name}</p>
         </div>
     )
-}
+} 
