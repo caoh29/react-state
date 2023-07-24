@@ -19,6 +19,15 @@ const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
   e.currentTarget.reset();
 };
 
+const handleUnsubscribe = (e: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => {
+  const input = document.querySelector('input[type="email"]') as HTMLInputElement;
+  if (input) {
+    const email = input.value;
+    unsubscribe(email);
+    input.value = '';
+  }
+};
+
 const subscribe = async (email: string) => {
   const response = await fetch('http://localhost:4000/subscribe', {
     method: 'POST',
@@ -28,11 +37,20 @@ const subscribe = async (email: string) => {
     body: JSON.stringify({ email }),
   });
   const json = await response.json();
-  if (json.error) {
-    alert(json.error);
-  } else {
-    console.log(json);
-  }
+  json.error ? alert(json.error) : alert(json.message);
+};
+
+
+const unsubscribe = async (email: string) => {
+  const response = await fetch('http://localhost:4000/unsubscribe', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email }),
+  });
+  const json = await response.json();
+  json.error ? alert(json.error) : alert(json.message);
 };
 
 
@@ -70,6 +88,7 @@ function App() {
           <form onSubmit={handleSubmit}>
             <input type="email" placeholder="Email"/>
             <button type='submit'>subscribe</button>
+            <p onClick={handleUnsubscribe}>Click here if you want to unsubscribe from our newsletter</p>
           </form>
         </div>
       </div>
