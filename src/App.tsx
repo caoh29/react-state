@@ -56,7 +56,7 @@ function App() {
       <div className="App">
         <div>
           <h1>Big Community of <br/> People Like You</h1>
-          <button onClick={() => setDisplayContent(!displayContent)}>Toggle Content</button>
+          <button onClick={() => setDisplayContent(!displayContent)}>{displayContent ? 'Hide' : 'Show'} section</button>
           {displayContent && (
             <div>
               <h4>{description}</h4>
