@@ -1,0 +1,15 @@
+.join-section {
+    /* background-image: url(../../../public/background.png); */
+    background-color: salmon;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.join-description {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    font-family: 'Source Sans 3', sans-serif;
+    color: rgba(255, 255, 255, 0.7);
+}

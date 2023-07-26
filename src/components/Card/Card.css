@@ -1,29 +1,10 @@
-.mb-0 {
-    margin-bottom: 0;
-}
-
-.mb-96 {
-    margin-bottom: 96px;
-}
-
-.mt-12 {
-    margin-top: 12px;
-}
-
-.mt-18 {
-    margin-top: 18px;
-}
-
-.mt-30 {
-    margin-top: 30px;
-}
-
-.mt-36 {
-    margin-top: 36px;
-}
-
-.mt-48 {
-    margin-top: 48px;
+.card {
+    padding: 30px;
+    border: solid 2px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    width: 315px;
+    box-sizing: border-box;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.15);
 }
 
 .photo {

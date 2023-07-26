@@ -1,0 +1,41 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.email {
+    padding: 5px;
+    height: 48px;
+    width: 80%;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    font-family: 'Source Sans 3', sans-serif;
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.email::placeholder {
+    color: rgba(255, 255, 255, 1);
+}
+
+.unsubscribe {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 20px;
+    font-family: 'Source Sans 3', sans-serif;
+    color: rgba(85, 194, 216, 1);
+    cursor: pointer;
+}
+
+.unsubscribe:hover {
+    color: rgb(187, 68, 187);
+}
+
+@media (min-width: 545px) {
+    .email {
+        width: 400px;
+    }
+}

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import '../../App.css';
+import './Form.css';
 
 const POST_REQUEST = async (endpoint: string, data: string) => {
     const response = await fetch(`http://localhost:4000/${endpoint}`, {
@@ -42,10 +44,10 @@ export default function Form() {
     };
 
     return (
-        <form onSubmit={handleSubscribe}>
-            <input type="email" placeholder="Email"/>
-            <button type='submit' disabled={loading} style={{ opacity: loading ? 0.5 : 1 }}>subscribe</button>
-            <h6 onClick={handleUnsubscribe} style={{ opacity: loading ? 0.5 : 1 }}>Fill the input and click here if you want to unsubscribe from our newsletter</h6>
+        <form className='mx-30 form' onSubmit={handleSubscribe}>
+            <input className='mt-48 mb-0 email' type="email" placeholder="Email"/>
+            <button className='mt-48 mb-0' type='submit' disabled={loading} style={{ opacity: loading ? 0.5 : 1 }}>Subscribe</button>
+            <h6 className='mt-24 mb-96 unsubscribe' onClick={handleUnsubscribe} style={{ opacity: loading ? 0.5 : 1 }}>Fill the input and click here if you want to unsubscribe from our newsletter</h6>
         </form>
     )
 }
