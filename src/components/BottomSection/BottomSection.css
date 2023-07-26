@@ -1,6 +1,6 @@
 .join-section {
-    /* background-image: url(../../../public/background.png); */
-    background-color: salmon;
+    background-image: url(../../../public/background.png);
+    /* background-color: salmon; */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
