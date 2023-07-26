@@ -1,0 +1,56 @@
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.mt-24 {
+    margin-top: 24px;
+}
+
+.mt-48 {
+    margin-top: 48px;
+}
+
+.mt-72 {
+    margin-top: 72px;
+}
+
+.App {
+    padding: 0 30px;
+    text-align: center;
+}
+
+.title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 64px;
+    font-family: 'Oswald', sans-serif;
+    color: rgba(70, 69, 71, 1);
+}
+
+button {
+    height: 36px;
+    width: 115px;
+    border-style: none;
+    border-color: rgba(85, 194, 216, 1);
+    border-radius: 18px;
+    background-color: rgba(85, 194, 216, 1);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 26px;
+    font-family: 'Oswald', sans-serif;
+    color: rgba(255, 255, 255, 1);
+}
+
+button:hover {
+    border-color: rgb(187, 68, 187);
+    background-color: rgb(187, 68, 187);
+    cursor: pointer;
+}
+
+.description {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    font-family: 'Source Sans 3', sans-serif;
+    color: rgba(102, 102, 102, 1);
+}

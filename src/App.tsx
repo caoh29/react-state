@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+import './App.css';
 import Card from './components/Card/Card';
 import Form from './components/Form/Form';
 
@@ -30,13 +30,13 @@ function App() {
   const [displayContent, setDisplayContent] = useState(false);
 
   return (
-      <div className="App">
+      <div className='App'>
         <section>
-          <h1 className='text-3xl font-bold underline'>Big Community of <br/> People Like You</h1>
-          <button onClick={() => setDisplayContent(!displayContent)}>{displayContent ? 'Hide' : 'Show'} section</button>
+          <h1 className='mt-72 mb-0 title'>Big Community of <br/> People Like You</h1>
+          <button className='mt-24 mb-0' onClick={() => setDisplayContent(!displayContent)}>{displayContent ? 'Hide' : 'Show'} section</button>
           {displayContent && (
             <div>
-              <h4>{description}</h4>
+              <h4 className='mt-24 mb-0 description'>{description}</h4>
               {data.map((user: User) => <Card key={user.name} content={user}/>)}
             </div>
           )}

@@ -1,0 +1,58 @@
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.mb-96 {
+    margin-bottom: 96px;
+}
+
+.mt-12 {
+    margin-top: 12px;
+}
+
+.mt-18 {
+    margin-top: 18px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.mt-36 {
+    margin-top: 36px;
+}
+
+.mt-48 {
+    margin-top: 48px;
+}
+
+.photo {
+    width: 150px;
+    height: 150px;
+    border-radius: calc(150px / 2);
+    border-style: none;
+}
+
+.resume {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    font-family: 'Source Sans 3', sans-serif;
+    color: rgba(102, 102, 102, 1);
+}
+
+.name {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 18px;
+    font-family: 'Source Sans 3', sans-serif;
+    color: rgba(70, 69, 71, 1);
+}
+
+.company {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    font-family: 'Source Sans 3', sans-serif;
+    color: rgba(70, 69, 71, 1);
+}
