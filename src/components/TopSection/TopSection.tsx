@@ -1,36 +1,33 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../../data/reducers/userSlice";
+import { fetchUsers } from "../../data/reducers/userSlice";
+import { changeVisibility } from "../../data/reducers/showSectionSlice";
+import { ThunkDispatch } from 'redux-thunk';
 import { RootState } from "../../data/store/store";
+import { AnyAction } from "@reduxjs/toolkit";
 import Card from "../Card/Card";
 import '../../App.css';
 import './TopSection.css';
 import { User } from "../../types";
 
+
+type AsyncDispatch = ThunkDispatch<RootState, {}, AnyAction>;
+
 export default function TopSection() {
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AsyncDispatch>();
     const users: User[] = useSelector((state: RootState) => state.userContext.users);
+    const isVisible: boolean = useSelector((state: RootState) => state.showSection.isVisible);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const response: Response = await fetch('http://localhost:4000/community');
-            const { data }: { data: User[] } = await response.json();
-            data.forEach((user: User) => dispatch(setUser(user)));
-        };
-        fetchData();
+        dispatch(fetchUsers('http://localhost:4000/community'));
     }, [dispatch]);
-
-
-    const [displayContent, setDisplayContent] = useState(false);
-
-    // console.log(users);
 
     return (
         <section>
             <h1 className='mt-72 mb-0 title'>Big Community of <br/> People Like You</h1>
-            <button className={displayContent ? 'mt-24 mb-0' : 'mt-24 mb-96'} onClick={() => setDisplayContent(!displayContent)}>{displayContent ? 'Hide' : 'Show'} section</button>
-            {displayContent && (
+            <button className={isVisible ? 'mt-24 mb-0' : 'mt-24 mb-96'} onClick={() => dispatch(changeVisibility())}>{isVisible ? 'Hide' : 'Show'} section</button>
+            {isVisible && (
                 <>
                     <h4 className='mt-24 mb-0 mx-30 description'>We're proud of our products, and we're really excited when we get feedback from our users.</h4>
                     <div className='cards-container'>

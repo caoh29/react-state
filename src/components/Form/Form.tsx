@@ -1,6 +1,10 @@
 import { useState } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { subscribe, unsubscribe } from '../../data/reducers/emailSubscriptionSlice';
+// import { RootState } from '../../data/store/store';
 import '../../App.css';
 import './Form.css';
+
 
 const POST_REQUEST = async (endpoint: string, data: string) => {
     const response = await fetch(`http://localhost:4000/${endpoint}`, {
@@ -15,18 +19,21 @@ const POST_REQUEST = async (endpoint: string, data: string) => {
     return json;
 }
 
-const handleSubmit = async (endpoint: string) => {
-    const input = document.querySelector('input[type="email"]') as HTMLInputElement;
-    if (input) {
-        const email = input.value;
-        const res = await POST_REQUEST(endpoint, email);
-        res.message && (input.value = '');
-    }
-};
-
 export default function Form() {
 
     const [loading, setLoading] = useState(false);
+
+    // const dispatch = useDispatch();
+    // const isSubscribed: boolean = useSelector((state: RootState) => state.emailSubscription.isSubscribed);
+
+    const handleSubmit = async (endpoint: string) => {
+        const input = document.querySelector('input[type="email"]') as HTMLInputElement;
+        if (!input  || input.value === '') return;
+        const email = input.value;
+        const res = await POST_REQUEST(endpoint, email);
+        res.message && (input.value = '');
+        // res.message ? dispatch(subscribe()) : dispatch(unsubscribe());
+    };
 
     const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
