@@ -2,16 +2,7 @@ import { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import '../../App.css';
 import './TopSection.css';
-
-export type User = {
-    name:    string;
-    photo:   string;
-    resume:  string;
-    company: {
-        name: string;
-        role: string;
-    }
-}
+import { User } from "../../types";
 
 export default function TopSection() {
 
