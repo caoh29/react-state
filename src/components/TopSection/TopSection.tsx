@@ -1,28 +1,16 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../data/reducers/userSlice";
+import { RootState } from "../../data/store/store";
 import Card from "../Card/Card";
 import '../../App.css';
 import './TopSection.css';
 import { User } from "../../types";
 
-
 export default function TopSection() {
 
-    // const [data, setData] = useState([]);
-    // const [description, setDescription] = useState('');
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const response = await fetch('http://localhost:4000/community');
-    //         const json = await response.json();
-    //         setData(json.data);
-    //         setDescription(json.description);
-    //     };
-    //     fetchData();
-    // }, []);
-
     const dispatch = useDispatch();
+    const users: User[] = useSelector((state: RootState) => state.userContext.users);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -36,6 +24,8 @@ export default function TopSection() {
 
     const [displayContent, setDisplayContent] = useState(false);
 
+    // console.log(users);
+
     return (
         <section>
             <h1 className='mt-72 mb-0 title'>Big Community of <br/> People Like You</h1>
@@ -44,10 +34,7 @@ export default function TopSection() {
                 <>
                     <h4 className='mt-24 mb-0 mx-30 description'>We're proud of our products, and we're really excited when we get feedback from our users.</h4>
                     <div className='cards-container'>
-                        {/* {data.map((user: User) => <Card key={user.name} />)} */}
-                        <Card />
-                        <Card />
-                        <Card />
+                        {users.map((user: User) => <Card key={user.name} content={user} />)}
                     </div>
                 </>
             )}

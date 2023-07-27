@@ -1,26 +1,20 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { User } from '../../types';
 
-const initialState: User = {
-    name:    '',
-    photo:   '',
-    resume:  '',
-    company: {
-        name: '',
-        role: '',
-    }
+interface UserContextState {
+    users: User[];
 }
 
+const initialState : UserContextState = {
+    users: []
+};
+
 export const userSlice = createSlice({
-    name: 'user',
+    name: 'UserContext',
     initialState,
     reducers: {
-        setUser: (state, action) => {
-            const { name, photo, resume, company } = action.payload;
-            state.name    = name;
-            state.photo   = photo;
-            state.resume  = resume;
-            state.company = company;
+        setUser: (state, action: PayloadAction<User>) => {
+            !state.users.includes(action.payload) && state.users.push(action.payload);
         },
     }
 });
