@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { subscribe, unsubscribe, checkSubscription } from '../../data/reducers/emailSubscriptionSlice';
-import { RootState } from '../../data/store/store';
+import { useDispatch } from 'react-redux';
+import { subscribe, unsubscribe } from '../../data/reducers/emailSubscriptionSlice';
 import '../../App.css';
 import './Form.css';
 
@@ -22,17 +21,15 @@ export default function Form() {
     const [loading, setLoading] = useState(false);
 
     const dispatch = useDispatch();
-    const isSubscribed: boolean = useSelector((state: RootState) => state.emailSubscription.isSubscribed);
 
     const handleSubmit = async (endpoint: string) => {
         const input = document.querySelector('input[type="email"]') as HTMLInputElement;
         if (!input  || input.value === '') return;
         const email = input.value;
-        dispatch(checkSubscription(email));
-        endpoint === 'subscribe' && !isSubscribed && dispatch(subscribe(email));
-        endpoint === 'unsubscribe' && isSubscribed && dispatch(unsubscribe(email));
         const res = await POST_REQUEST(endpoint, email);
         res.message && (input.value = '');
+        endpoint === 'subscribe' && res.message && dispatch(subscribe());
+        endpoint === 'unsubscribe' && res.message && dispatch(unsubscribe());
     };
 
     const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -55,7 +52,6 @@ export default function Form() {
             <input className='mt-48 mb-0 email' type="email" placeholder="Email"/>
             <button className='mt-48 mb-0' type='submit' disabled={loading} style={{ opacity: loading ? 0.5 : 1 }}>Subscribe</button>
             <h6 className='mt-24 mb-96 unsubscribe' onClick={handleUnsubscribe} style={{ opacity: loading ? 0.5 : 1 }}>Fill the input and click here if you want to unsubscribe from our newsletter</h6>
-            {/* {isSubscribed && <h2>TEST</h2>} */}
         </form>
     )
 }
