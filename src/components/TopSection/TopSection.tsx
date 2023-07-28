@@ -38,7 +38,8 @@ export default function TopSection() {
                 <>
                     <h4 className='mt-24 mb-0 mx-30 description'>{description}</h4>
                     <div className='cards-container'>
-                        {data.map((user: User) => <Card key={user.name} content={user}/>)}
+                        {data.filter((user: User, index) => index !== 0).map((user: User) => <Card key={user.name} content={user} isActive={false} />)}
+                        <Card content={data[0]} isActive={true} />
                     </div>
                 </>
             )}
