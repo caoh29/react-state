@@ -1,4 +1,4 @@
-import { User } from '../../types';
+import { User } from '../TopSection/TopSection';
 import '../../App.css';
 import "./Card.css"
 
