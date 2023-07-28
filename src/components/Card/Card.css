@@ -1,4 +1,12 @@
 .card {
+    display: none;
+    padding: 30px;
+    border-radius: 8px;
+    width: 315px;
+    box-sizing: border-box;
+}
+
+.card--active {
     padding: 30px;
     border: solid 2px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
@@ -36,4 +44,10 @@
     line-height: 16px;
     font-family: 'Source Sans 3', sans-serif;
     color: rgba(70, 69, 71, 1);
+}
+
+@media (min-width: 1024px) {
+    .card {
+        display: block;
+    }
 }

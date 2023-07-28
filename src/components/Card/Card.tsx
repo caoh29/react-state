@@ -3,12 +3,13 @@ import '../../App.css';
 import "./Card.css"
 
 interface CardProps {
-    content: User
+    content: User,
+    isActive: boolean
 }
 
-export default function Card({ content }: CardProps) {
+export default function Card({ content, isActive }: CardProps) {
     return (
-        <div className="mt-48 mb-96 mx-auto card">
+        <div className={`mt-48 mb-96 mx-auto ${isActive ? "card--active" : "card"}`}>
             <img className="mt-0 mb-0 photo" src={content.photo} alt={content.name} />
             <p className="mt-18 mb-0 resume">{content.resume}</p>
             <h5 className="mt-36 mb-0 name">{content.name}</h5>

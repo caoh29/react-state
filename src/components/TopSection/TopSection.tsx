@@ -31,7 +31,8 @@ export default function TopSection() {
                 <>
                     <h4 className='mt-24 mb-0 mx-30 description'>We're proud of our products, and we're really excited when we get feedback from our users.</h4>
                     <div className='cards-container'>
-                        {users.map((user: User) => <Card key={user.name} content={user} />)}
+                        {users.filter((user: User, index) => index !== 0).map((user: User) => <Card key={user.name} content={user} isActive={false} />)}
+                        <Card content={users[0]} isActive={true} />
                     </div>
                 </>
             )}
