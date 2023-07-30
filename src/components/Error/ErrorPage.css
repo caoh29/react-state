@@ -1,0 +1,34 @@
+.error-container {
+    background-color: lightgray;
+    padding: 10%;
+    text-align: left;
+    height: 100vh;
+}
+
+.error-title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 64px;
+    font-family: 'Oswald', sans-serif;
+    color: rgba(70, 69, 71, 1);
+}
+
+.error-description {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    font-family: 'Source Sans 3', sans-serif;
+    color: rgba(102, 102, 102, 1);
+}
+
+.error-link {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    font-family: 'Source Sans 3', sans-serif;
+    color: turquoise;
+}
+
+.error-link:hover {
+    color: purple;
+}
