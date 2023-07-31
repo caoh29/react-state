@@ -5,8 +5,8 @@ import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import './index.css';
 import App from './App';
 import store from './data/store/store';
-import TopSection from './components/TopSection/TopSection';
 import ErrorPage from './components/Error/ErrorPage';
+import CommunityPage from './components/Community/CommunityPage';
 import UserPage from './components/User/UserPage';
 
 const router = createBrowserRouter([
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/community",
-    element: <TopSection />,
+    element: <CommunityPage />,
     errorElement: <ErrorPage />,
   },
   {
