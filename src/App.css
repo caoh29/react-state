@@ -2,6 +2,10 @@
     margin-bottom: 0;
 }
 
+.mb-60 {
+    margin-bottom: 60px;
+}
+
 .mb-96 {
     margin-bottom: 96px;
 }
@@ -92,4 +96,31 @@ button:hover {
     border-color: rgb(187, 68, 187);
     background-color: rgb(187, 68, 187);
     cursor: pointer;
+}
+
+.link {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    font-family: 'Source Sans 3', sans-serif;
+    color: turquoise;
+}
+
+.link:hover {
+    color: purple;
+}
+
+.link--absolute {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 28px;
+    font-family: 'Source Sans 3', sans-serif;
+    color: turquoise;
+}
+
+.link--absolute:hover {
+    color: purple;
 }

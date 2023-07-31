@@ -1,8 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import '../../App.css';
 import './ErrorPage.css';
 
 export default function ErrorPage() {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+
     return (
         <div className="error-container">
             <h1 className="mt-0 mb-0 error-title">Page Not Found</h1>

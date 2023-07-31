@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "../reducers/userSlice";
+import usersReducer from "../reducers/usersSlice";
+import userCardReducer from "../reducers/userCardSlice";
 import sectionReducer from "../reducers/showSectionSlice";
 import emailReducer from "../reducers/emailSubscriptionSlice";
 
 const store = configureStore({
     reducer: {
-        userContext: userReducer,
+        usersContext: usersReducer,
+        userCard: userCardReducer,
         showSection: sectionReducer,
         emailSubscription: emailReducer,
     }

@@ -11,12 +11,11 @@ const initialState : UserContextState = {
 
 export const fetchUsers = createAsyncThunk('fetchUsers', async (apiURL : string) => {
     const response = await fetch(apiURL);
-    const { data } = await response.json();
-    return data;
+    return response.json();
 });
 
-export const userSlice = createSlice({
-    name: 'UserContext',
+export const usersSlice = createSlice({
+    name: 'UsersContext',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -30,4 +29,4 @@ export const userSlice = createSlice({
     }
 });
 
-export default userSlice.reducer;
+export default usersSlice.reducer;

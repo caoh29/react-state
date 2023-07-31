@@ -7,6 +7,7 @@ import App from './App';
 import store from './data/store/store';
 import TopSection from './components/TopSection/TopSection';
 import ErrorPage from './components/Error/ErrorPage';
+import UserPage from './components/User/UserPage';
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,12 @@ const router = createBrowserRouter([
     path: "/community",
     element: <TopSection />,
     errorElement: <ErrorPage />,
-  }
+  },
+  {
+    path: "/community/:userId",
+    element: <UserPage/>,
+    errorElement: <ErrorPage />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(
