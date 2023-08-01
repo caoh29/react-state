@@ -4,16 +4,16 @@ import { subscribe, unsubscribe } from '../../data/reducers/emailSubscriptionSli
 import '../../App.css';
 import './Form.css';
 
-const POST_REQUEST = async (endpoint: string, data: string) => {
+const POST_REQUEST = async (endpoint: string, email: string) => {
     const response = await fetch(`http://localhost:4000/${endpoint}`, {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ data }),
+        body: JSON.stringify({ email }),
     });
     const json = await response.json();
-    json.error ? alert(json.error) : alert(json.message);
+    json.error ? alert(json.error) : alert(json.success);
     return json;
 }
 
@@ -27,9 +27,9 @@ export default function Form() {
         if (!input  || input.value === '') return;
         const email = input.value;
         const res = await POST_REQUEST(endpoint, email);
-        res.message && (input.value = '');
-        endpoint === 'subscribe' && res.message && dispatch(subscribe());
-        endpoint === 'unsubscribe' && res.message && dispatch(unsubscribe());
+        res.success && (input.value = '');
+        endpoint === 'subscribe' && res.success && dispatch(subscribe());
+        endpoint === 'unsubscribe' && res.success && dispatch(unsubscribe());
     };
 
     const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {

@@ -24,7 +24,7 @@ export default function UserPage() {
 
     return (
         <section>
-            <h1 className='mt-72 mb-0 title'>{user.name}</h1>
+            <h1 className='mt-72 mb-0 title'>{user.firstName + ' ' + user.lastName}</h1>
             <Card content={user} isActive={true} />
             <NavLink className="link" to={"/"}>&larr; Back to main page</NavLink>
         </section>

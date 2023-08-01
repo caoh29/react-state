@@ -8,13 +8,11 @@ interface UserCardState {
 const initialState : UserCardState = {
     user: {
         id: '',
-        name: '',
-        photo: '',
+        firstName: '',
+        lastName: '',
+        avatar: '',
         resume: '',
-        company: {
-            name: '',
-            role: ''
-        }
+        position: ''
     }
 };
 
