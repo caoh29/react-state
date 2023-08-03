@@ -24,4 +24,4 @@ export default function Card({ content, isActive }: CardProps) {
             <p className="mt-12 mb-0 company">{content.company.role} at <br/> {content.company.name}</p>
         </div>
     )
-} 
+};
