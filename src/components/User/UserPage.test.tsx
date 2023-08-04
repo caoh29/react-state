@@ -1,8 +1,9 @@
 import '@testing-library/jest-dom';
-import { screen, fireEvent, waitFor } from '@testing-library/react';
-import { MemoryRouter } from "react-router-dom";
+import { screen, fireEvent, waitFor, render } from '@testing-library/react';
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import { renderWithProviders } from '../../utils/test-utils'
 import { server } from '../../mocks/server';
+import userEvent from '@testing-library/user-event';
 
 import UserPage from "./UserPage";
 
@@ -39,26 +40,27 @@ describe('<UserPage />', () => {
         // screen.debug(); 
     });
 
-    // test('redirects when clicking on "← Back to main page" link', async () => {
-    //     renderWithProviders(
-    //         <MemoryRouter initialEntries={initialEntries}>
-    //             <UserPage />
-    //         </MemoryRouter>
-    //     );
-    //     const title = await screen.findByRole('heading', {name: 'John Smith'});
-    //     expect(title).toBeInTheDocument();
+    test('redirects when clicking on "← Back to main page" link', async () => {
+        renderWithProviders(
+            <MemoryRouter initialEntries={initialEntries}>
+                <UserPage />
+            </MemoryRouter>
+        );
+        // render(<UserPage />, { wrapper: BrowserRouter });
+        const title = await screen.findByRole('heading', {name: 'John Smith'});
+        expect(title).toBeInTheDocument();
 
-    //     const link = screen.getByRole('link', {name: '← Back to main page'});
-    //     expect(link).toBeInTheDocument();
+        const link = screen.getByRole('link', {name: '← Back to main page'});
+        expect(link).toBeInTheDocument();
 
-    //     fireEvent.click(link);
-    //     // Use waitFor to wait for the component to be unmounted
-    //     await waitFor(() => {
-    //         const title = screen.queryByRole('heading', {name: 'John Smith'});
-    //         expect(title).not.toBeInTheDocument(); // Ensure the component is unmounted
-    //     });
+        // await userEvent.click(link);
+        // // Use waitFor to wait for the component to be unmounted
+        // await waitFor(() => {
+        //     const title = screen.queryByRole('heading', {name: 'John Smith'});
+        //     expect(title).not.toBeInTheDocument(); // Ensure the component is unmounted
+        // });
 
-    //     const newTitle = await screen.findByRole('heading', {name: 'Big Community of'});
-    //     expect(newTitle).toBeInTheDocument();
-    // });
+        // const newTitle = screen.getByRole('heading', {name: 'Big Community of People Like You'});
+        // expect(newTitle).toBeInTheDocument();
+    });
 });

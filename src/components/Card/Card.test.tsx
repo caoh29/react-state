@@ -1,8 +1,9 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { MemoryRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 
 import Card from "./Card";
+import userEvent from '@testing-library/user-event';
 
 describe('<Card />', () => {
     const content = {
@@ -103,6 +104,7 @@ describe('<Card />', () => {
     test('redirects to "community/:userId" on NavLink click', async () => {
         const initialIndex: number = 0;
 
+        // render(<Card content={content} isActive={true} />, {wrapper: BrowserRouter});
         render(
             <MemoryRouter initialIndex={initialIndex} initialEntries={initialEntries}>
                 <Card content={content} isActive={true} />
@@ -111,9 +113,8 @@ describe('<Card />', () => {
 
         const cardName = screen.getByText(/username/i);
         // screen.debug();
-        fireEvent.click(cardName);
+        await userEvent.click(cardName);
         expect(cardName).not.toBeInTheDocument();
         // screen.debug();
-        // await waitFor(() => expect(window.location.pathname).toBe('/community/user1'));
     });
 });
