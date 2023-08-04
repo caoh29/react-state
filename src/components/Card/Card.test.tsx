@@ -26,30 +26,24 @@ describe('<Card />', () => {
                 <Card content={content} isActive={true} />
             </MemoryRouter>
         );
+        
+        const ELEMENTS_LIST = [
+            { element: screen.getByText(/developer/i)},
+            { element: screen.getByText(/awesome company/i)},
+            { element: screen.getByText(/lorem ipsilum/i)},
+            { element: screen.getByText(/username/i)},
+            { element: screen.getByAltText(/username/i)},
+        ];
 
-        const cardRole = screen.getByText(/developer/i);
-        expect(cardRole).toBeInTheDocument();
-        expect(cardRole).toBeVisible();
-        expect(cardRole).toHaveTextContent('Developer');
+        for (const item of ELEMENTS_LIST) {
+            expect(item.element).toBeInTheDocument();
+            expect(item.element).toBeVisible();
+        }
 
-        const cardCompanyName = screen.getByText(/awesome company/i);
-        expect(cardCompanyName).toBeInTheDocument();
-        expect(cardCompanyName).toBeVisible();
-        expect(cardCompanyName).toHaveTextContent('Awesome Company');
-
-        const cardImage = screen.getByAltText(/username/i);
-        expect(cardImage).toBeInTheDocument();
-        expect(cardImage).toBeVisible();
-
-        const cardResume = screen.getByText(/lorem ipsilum/i);
-        expect(cardResume).toBeInTheDocument();
-        expect(cardResume).toBeVisible();
-        expect(cardResume).toHaveTextContent('Lorem ipsilum');
-
-        const cardName = screen.getByText(/username/i);
-        expect(cardName).toBeInTheDocument();
-        expect(cardName).toBeVisible();
-        expect(cardName).toHaveTextContent('UserName');
+        expect(ELEMENTS_LIST[0].element).toHaveTextContent(content.company.role);
+        expect(ELEMENTS_LIST[1].element).toHaveTextContent(content.company.name);
+        expect(ELEMENTS_LIST[2].element).toHaveTextContent(content.resume);
+        expect(ELEMENTS_LIST[3].element).toHaveTextContent(content.name);
     });
 
     test('renders with valid props with path="/community"', () => {
@@ -61,29 +55,23 @@ describe('<Card />', () => {
             </MemoryRouter>
         );
 
-        const cardRole = screen.getByText(/developer/i);
-        expect(cardRole).toBeInTheDocument();
-        expect(cardRole).toBeVisible();
-        expect(cardRole).toHaveTextContent('Developer');
+        const ELEMENTS_LIST = [
+            { element: screen.getByText(/developer/i)},
+            { element: screen.getByText(/awesome company/i)},
+            { element: screen.getByText(/lorem ipsilum/i)},
+            { element: screen.getByText(/username/i)},
+            { element: screen.getByAltText(/username/i)},
+        ];
 
-        const cardCompanyName = screen.getByText(/awesome company/i);
-        expect(cardCompanyName).toBeInTheDocument();
-        expect(cardCompanyName).toBeVisible();
-        expect(cardCompanyName).toHaveTextContent('Awesome Company');
+        for (const item of ELEMENTS_LIST) {
+            expect(item.element).toBeInTheDocument();
+            expect(item.element).toBeVisible();
+        }
 
-        const cardImage = screen.getByAltText(/username/i);
-        expect(cardImage).toBeInTheDocument();
-        expect(cardImage).toBeVisible();
-
-        const cardResume = screen.getByText(/lorem ipsilum/i);
-        expect(cardResume).toBeInTheDocument();
-        expect(cardResume).toBeVisible();
-        expect(cardResume).toHaveTextContent('Lorem ipsilum');
-
-        const cardName = screen.getByText(/username/i);
-        expect(cardName).toBeInTheDocument();
-        expect(cardName).toBeVisible();
-        expect(cardName).toHaveTextContent('UserName');
+        expect(ELEMENTS_LIST[0].element).toHaveTextContent(content.company.role);
+        expect(ELEMENTS_LIST[1].element).toHaveTextContent(content.company.name);
+        expect(ELEMENTS_LIST[2].element).toHaveTextContent(content.resume);
+        expect(ELEMENTS_LIST[3].element).toHaveTextContent(content.name);
     });
 
     test('renders with valid props with path="/community/:userId"', () => {
@@ -95,27 +83,24 @@ describe('<Card />', () => {
             </MemoryRouter>
         );
 
-        const cardRole = screen.getByText(/developer/i);
-        expect(cardRole).toBeInTheDocument();
-        expect(cardRole).toBeVisible();
-        expect(cardRole).toHaveTextContent('Developer');
+        const ELEMENTS_LIST = [
+            { element: screen.getByText(/developer/i)},
+            { element: screen.getByText(/awesome company/i)},
+            { element: screen.getByText(/lorem ipsilum/i)},
+            { element: screen.getByAltText(/username/i)},
+        ];
 
-        const cardCompanyName = screen.getByText(/awesome company/i);
-        expect(cardCompanyName).toBeInTheDocument();
-        expect(cardCompanyName).toBeVisible();
-        expect(cardCompanyName).toHaveTextContent('Awesome Company');
+        for (const item of ELEMENTS_LIST) {
+            expect(item.element).toBeInTheDocument();
+            expect(item.element).toBeVisible();
+        }
 
-        const cardImage = screen.getByAltText(/username/i);
-        expect(cardImage).toBeInTheDocument();
-        expect(cardImage).toBeVisible();
-
-        const cardResume = screen.getByText(/lorem ipsilum/i);
-        expect(cardResume).toBeInTheDocument();
-        expect(cardResume).toBeVisible();
-        expect(cardResume).toHaveTextContent('Lorem ipsilum');
+        expect(ELEMENTS_LIST[0].element).toHaveTextContent(content.company.role);
+        expect(ELEMENTS_LIST[1].element).toHaveTextContent(content.company.name);
+        expect(ELEMENTS_LIST[2].element).toHaveTextContent(content.resume);
     });
 
-    test('redirects to "community/:userId" on NavLink click', () => {
+    test('redirects to "community/:userId" on NavLink click', async () => {
         const initialIndex: number = 0;
 
         render(
@@ -125,9 +110,10 @@ describe('<Card />', () => {
         );
 
         const cardName = screen.getByText(/username/i);
-
+        // screen.debug();
         fireEvent.click(cardName);
         expect(cardName).not.toBeInTheDocument();
-        // expect(window.location.pathname).toBe('/community/user1');
+        // screen.debug();
+        // await waitFor(() => expect(window.location.pathname).toBe('/community/user1'));
     });
 });

@@ -14,7 +14,7 @@ export default function Card({ content, isActive }: CardProps) {
     const getURL = () => {
         if (pathname === '/') return `community/${content.id}`;
         if (pathname === '/community') return `${content.id}`;
-        else return '';
+        return '';
     }
     return (
         <div className={`mt-48 mb-96 mx-auto ${isActive ? "card--active" : "card"}`}>

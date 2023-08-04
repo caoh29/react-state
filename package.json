@@ -48,6 +48,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.3",
-    "jest": "^27.5.1"
+    "jest": "^27.5.1",
+    "msw": "^1.2.3"
   }
 }
