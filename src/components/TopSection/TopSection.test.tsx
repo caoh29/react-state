@@ -111,6 +111,9 @@ describe('TopSection', () => {
         // screen.debug();
         const subTitle = screen.getByRole('heading', {name: 'We\'re proud of our products, and we\'re really excited when we get feedback from our users.'});
         expect(subTitle).toBeInTheDocument();
+
+        const link = screen.getByRole('link', {name: '→ More about Community'});
+        expect(link).toBeInTheDocument();
     });
 
 });
