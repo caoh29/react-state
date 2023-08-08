@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface ShowSectionState {
+export interface ShowSectionState {
     isVisible: boolean;
 }
 

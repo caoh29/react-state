@@ -1,13 +1,13 @@
 import '@testing-library/jest-dom';
-import { screen, fireEvent, waitFor, render } from '@testing-library/react';
-import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import { screen } from '@testing-library/react';
+import { MemoryRouter } from "react-router-dom";
 import { renderWithProviders } from '../../utils/test-utils'
 import { server } from '../../mocks/server';
 import userEvent from '@testing-library/user-event';
 
 import UserPage from "./UserPage";
 
-describe('<UserPage />', () => {
+describe('UserPage', () => {
     // Enable API mocking before tests.
     beforeAll(() => server.listen());
 
@@ -36,7 +36,7 @@ describe('<UserPage />', () => {
         expect(link).toBeVisible();
         expect(link).toHaveTextContent('← Back to main page');
         // screen.debug(); 
-        // fireEvent.click(link);
+        // userEvent.click(link);
         // screen.debug(); 
     });
 

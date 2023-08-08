@@ -53,5 +53,56 @@ export const handlers = [
                 },
             ]), 
             ctx.delay(150))
-    })
+    }),
+    rest.post('http://localhost:4000/subscribe', (req, res, ctx) => {
+        (async () => {
+            let subscribedEmails = ['forbidden@gmail.com'];
+            const data = await req.json();
+            if (subscribedEmails.includes(data)) {
+                return res(
+                    ctx.status(422), 
+                    ctx.json({
+                        error: "Email is already in use"
+                    }), 
+                    ctx.delay(150)
+                )
+            } else {
+                subscribedEmails.push(data);
+                return res(
+                    ctx.status(200), 
+                    ctx.json({
+                        message: "Thank you for subscribing!"
+                    }), 
+                    ctx.delay(150)
+                )
+            }
+        })()
+    }),
+    rest.post('http://localhost:4000/unsubscribe', (req, res, ctx) => {
+        (async () => {
+            let subscribedEmails = ['forbidden@gmail.com'];
+            const data = await req.json();
+            if (subscribedEmails.includes(data)) {
+                const index = subscribedEmails.findIndex((item) => item === data);
+                if (index !== -1) {
+                    subscribedEmails.splice(index, 1);
+                }
+                return res(
+                    ctx.status(200), 
+                    ctx.json({
+                        message: "We will miss you!"
+                    }), 
+                    ctx.delay(150)
+                )
+            } else {
+                return res(
+                    ctx.status(422), 
+                    ctx.json({
+                        error: "Email does not exist"
+                    }), 
+                    ctx.delay(150)
+                )
+            }
+        })()
+    }),
 ];

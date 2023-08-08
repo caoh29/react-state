@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface EmailSubscriptionState {
+export interface EmailSubscriptionState {
     isSubscribed: boolean;
 }
 

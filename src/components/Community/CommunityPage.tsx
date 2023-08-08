@@ -12,7 +12,7 @@ import { User } from "../../types";
 
 type AsyncDispatch = ThunkDispatch<RootState, {}, AnyAction>;
 
-export default function TopSection() {
+export default function CommunityPage() {
 
     const dispatch = useDispatch<AsyncDispatch>();
     const users: User[] = useSelector((state: RootState) => state.usersContext.users);

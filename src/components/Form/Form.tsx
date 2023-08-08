@@ -4,7 +4,7 @@ import { subscribe, unsubscribe } from '../../data/reducers/emailSubscriptionSli
 import '../../App.css';
 import './Form.css';
 
-const POST_REQUEST = async (endpoint: string, data: string) => {
+export const POST_REQUEST = async (endpoint: string, data: string) => {
     const response = await fetch(`http://localhost:4000/${endpoint}`, {
         method: 'POST',
         headers: {
