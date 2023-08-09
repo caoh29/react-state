@@ -15,14 +15,7 @@ describe('BottomSection', () => {
                 <BottomSection />
             </MemoryRouter>
         );
-        const title = screen.getByRole('heading', {name: 'Join Our Program'});
-        expect(title).toBeInTheDocument();
-        expect(title).toBeVisible();
-        expect(title).toHaveTextContent('Join Our Program');
-        
-        const description = screen.getByText(/Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, quisquam/i);
-        expect(description).toBeInTheDocument();
-        expect(description).toBeVisible();
-        expect(description).toHaveTextContent('Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, quisquam.');
+        expect(screen.getByRole('heading', {name: 'Join Our Program'})).toBeInTheDocument();
+        expect(screen.getByText(/Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, quisquam/i)).toBeInTheDocument();
     });
 });

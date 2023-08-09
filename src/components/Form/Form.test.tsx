@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from "react-router-dom";
 import { renderWithProviders } from '../../utils/test-utils'
 import { server } from '../../mocks/server';
@@ -65,17 +65,78 @@ describe('Form', () => {
         expect(response).toHaveProperty('error');
     });
 
-    // const initialEntries: string[] = ['/'];
+    const initialEntries: string[] = ['/'];
 
-    // test('renders with valid props', async () => {
-    //     renderWithProviders(
-    //         <MemoryRouter initialEntries={initialEntries}>
-    //             <Form />
-    //         </MemoryRouter>
-    //     );
-    //     const input = screen.getByPlaceholderText('Email');
-    //     fireEvent.change(input, { target: { value: 'test@test.com' } });
-    //     userEvent.click(screen.getByText('Subscribe'));
-    //     await waitFor(() => expect(POST_REQUEST).toHaveBeenCalledWith('subscribe', 'test@test.com'));
-    // });
+    test('renders correctly', async () => {
+
+        renderWithProviders(
+            <MemoryRouter initialEntries={initialEntries}>
+                <Form />
+            </MemoryRouter>
+        );
+        
+        expect(screen.getByPlaceholderText('Email')).toBeInTheDocument();
+        expect(screen.getByRole('button', {name: 'Subscribe'})).toBeInTheDocument();
+        expect(screen.getByRole('heading', {name: 'Fill the input and click here if you want to unsubscribe from our newsletter'})).toBeInTheDocument();
+    });
+
+    test('should subscribe a new user when clicking on "Subscribe" button', async () => {
+        const spy = jest.spyOn(window, 'alert');
+
+        renderWithProviders(
+            <MemoryRouter initialEntries={initialEntries}>
+                <Form />
+            </MemoryRouter>
+        );
+        
+        const input = screen.getByPlaceholderText('Email');
+        userEvent.type(input, 'test@test.com');
+        userEvent.click(screen.getByText('Subscribe'));
+        await waitFor(() => expect(spy).toHaveBeenCalledWith('Thank you for subscribing!'));
+    });
+
+    test('should alert an error when a subscribed user clicks on "Subscribe" button', async () => {
+        const spy = jest.spyOn(window, 'alert');
+
+        renderWithProviders(
+            <MemoryRouter initialEntries={initialEntries}>
+                <Form />
+            </MemoryRouter>
+        );
+        
+        const input = screen.getByPlaceholderText('Email');
+        userEvent.type(input, 'forbidden@gmail.com');
+        userEvent.click(screen.getByText('Subscribe'));
+        await waitFor(() => expect(spy).toHaveBeenCalledWith('Email is already in use'));
+    });
+
+    test('should alert an error when a new user when clicking on "Fill the input and click here if you want to unsubscribe from our newsletter"', async () => {
+        const spy = jest.spyOn(window, 'alert');
+
+        renderWithProviders(
+            <MemoryRouter initialEntries={initialEntries}>
+                <Form />
+            </MemoryRouter>
+        );
+        
+        const input = screen.getByPlaceholderText('Email');
+        userEvent.type(input, 'test@test.com');
+        userEvent.click(screen.getByRole('heading', {name: 'Fill the input and click here if you want to unsubscribe from our newsletter'}));
+        await waitFor(() => expect(spy).toHaveBeenCalledWith('Email does not exist'));
+    });
+
+    test('should alert a message when a subscribed user clicks on "Fill the input and click here if you want to unsubscribe from our newsletter"', async () => {
+        const spy = jest.spyOn(window, 'alert');
+
+        renderWithProviders(
+            <MemoryRouter initialEntries={initialEntries}>
+                <Form />
+            </MemoryRouter>
+        );
+        
+        const input = screen.getByPlaceholderText('Email');
+        userEvent.type(input, 'forbidden@gmail.com');
+        userEvent.click(screen.getByRole('heading', {name: 'Fill the input and click here if you want to unsubscribe from our newsletter'}));
+        await waitFor(() => expect(spy).toHaveBeenCalledWith('We will miss you!'));
+    });
 });
