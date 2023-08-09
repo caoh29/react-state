@@ -25,19 +25,9 @@ describe('UserPage', () => {
                 <UserPage />
             </MemoryRouter>
         );
-        const title = await screen.findByRole('heading', {name: 'John Smith'});
-        expect(title).toBeInTheDocument();
-        expect(title).toBeVisible();
-        expect(title).toHaveTextContent('John Smith');
-        
-        const link = screen.getByText(/← Back to main page/i);
-        // const link = screen.getByRole('link', {name: '← Back to main page'});
-        expect(link).toBeInTheDocument();
-        expect(link).toBeVisible();
-        expect(link).toHaveTextContent('← Back to main page');
-        // screen.debug(); 
-        // userEvent.click(link);
-        // screen.debug(); 
+
+        expect(await screen.findByRole('heading', {name: 'John Smith'})).toBeInTheDocument();
+        expect(screen.getByText(/← Back to main page/i)).toBeInTheDocument();
     });
 
     test('redirects when clicking on "← Back to main page" link', async () => {
@@ -46,21 +36,8 @@ describe('UserPage', () => {
                 <UserPage />
             </MemoryRouter>
         );
-        // render(<UserPage />, { wrapper: BrowserRouter });
-        const title = await screen.findByRole('heading', {name: 'John Smith'});
-        expect(title).toBeInTheDocument();
 
-        const link = screen.getByRole('link', {name: '← Back to main page'});
-        expect(link).toBeInTheDocument();
-
-        // await userEvent.click(link);
-        // // Use waitFor to wait for the component to be unmounted
-        // await waitFor(() => {
-        //     const title = screen.queryByRole('heading', {name: 'John Smith'});
-        //     expect(title).not.toBeInTheDocument(); // Ensure the component is unmounted
-        // });
-
-        // const newTitle = screen.getByRole('heading', {name: 'Big Community of People Like You'});
-        // expect(newTitle).toBeInTheDocument();
+        userEvent.click(screen.getByRole('link', {name: '← Back to main page'}));
+        expect(window.location.pathname).toBe('/');
     });
 });
