@@ -26,7 +26,7 @@ describe('usersSlice', () => {
     });
 
     test('should handle fetchUsers.fulfilled', async () => {
-        await store.dispatch(fetchUsers('/community'));
+        await store.dispatch(fetchUsers('http://localhost:4000/community'));
         const state = store.getState();
         expect(state.usersContext.users).toEqual([
             {
@@ -63,7 +63,7 @@ describe('usersSlice', () => {
     });
 
     test('should handle fetchUsers.rejected', async () => {
-        await store.dispatch(fetchUsers('/invalid'));
+        await store.dispatch(fetchUsers('http://localhost:4000/invalid'));
         const state = store.getState();
         expect(state.usersContext.users).toEqual([]);
     })

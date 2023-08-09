@@ -26,7 +26,7 @@ describe('userCardSlice', () => {
     });
 
     test('should handle fetchUser.fulfilled', async () => {
-        await store.dispatch(fetchUser('/community/userPage1'));
+        await store.dispatch(fetchUser('http://localhost:4000/community/userPage1'));
         const state = store.getState();
         expect(state.userCard.user).toEqual({
             id: 'userPage1',
@@ -41,7 +41,7 @@ describe('userCardSlice', () => {
     });
 
     test('should handle fetchUser.rejected', async () => {
-        await store.dispatch(fetchUser('/invalid'));
+        await store.dispatch(fetchUser('http://localhost:4000/invalid'));
         const state = store.getState();
         expect(state.userCard.user).toEqual({
             id: '',
